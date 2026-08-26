@@ -1,0 +1,51 @@
+.guestRoot {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.guestContainer {
+    width: 60%;
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--c-purple);
+    padding: 30px;
+}
+
+.guestContainer h1 {
+    font-variant: small-caps;
+    font-size: xx-large;
+    margin-bottom: 15px;
+}
+
+.error {
+    color: var(--c-red);
+}
+
+.success {
+    color: var(--c-green);
+}
+
+.loading {
+    color: var(--c-grey);
+}
+
+.guestContainer form {
+    position: relative;
+}
+
+.guestContainer button {
+    position: relative;
+    left: 35%;
+}
+
+
+
+
+
+@media (min-width: 1025px) {
+    .guestContainer {
+        width: 615px;
+    }
+}

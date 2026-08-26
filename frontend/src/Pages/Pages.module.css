@@ -1,0 +1,22 @@
+/* Home Page */
+
+
+.home {
+    text-align: center;
+}
+
+
+/* Dashboard */
+
+.dashboard {
+    text-align: center;
+}
+
+.dashboard form {
+}
+
+.dashboard div button {
+    width: 150px;
+    height: 3em;
+    margin-top: 50px;
+}

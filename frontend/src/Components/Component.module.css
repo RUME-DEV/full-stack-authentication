@@ -1,0 +1,86 @@
+/* Welcome Component */
+
+.welcome {
+    text-align: center;
+    box-shadow: 0 0 10px var(--c-white);
+    padding: 30px 0;
+    margin-top: 50px;
+    line-height: 3;
+}
+
+.welcome h1 {
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.welcome p {
+    font-size: 19px;
+}
+
+
+
+/* Loading Component */
+
+.loadingRoot {
+    position: absolute;
+    background: #00000030;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingRoot a {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.loading {
+    border: solid 3px var(--c-white);
+    border-right: transparent;
+    border-radius: 50%;
+    padding: 40px 20px;
+
+    animation: loading 2s linear infinite;
+    transition: all .3s linear;
+}
+
+.loadingRoot p {
+    position: absolute;
+}
+.loadingRoot p::after {
+    content: "..";
+    opacity: 0;
+
+    animation: pTag 2s linear infinite;
+}
+
+
+
+@keyframes loading {
+    from {
+        transform: rotatez(0);
+    }
+    to {
+        transform: rotatez(360deg);
+    }
+    30% {
+        border: solid 3px var(--c-red);
+        border-right: transparent;
+    }
+    70% {
+        border: solid 3px var(--c-purple);
+        border-right: transparent;
+    }
+}
+
+@keyframes pTag {
+    50% {
+        opacity: 1;
+    }
+}

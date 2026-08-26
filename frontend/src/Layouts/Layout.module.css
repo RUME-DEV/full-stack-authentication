@@ -1,0 +1,60 @@
+/* NavLink Layout */
+
+.navLinkLayout {
+    padding: 10px 20px;
+    display: grid;
+    grid-template-areas: 
+    "logout navlink";
+}
+
+.navLinkLayout button {
+    grid-area: logout;
+    height: 3em;
+    width: 150px;
+}
+
+.navLinkLayout ul {
+    grid-area: navlink;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.active {
+    color: var(--c-purple);
+}
+a.active::before {
+    width: 100%;
+    background: var(--c-purple);
+}
+
+
+/* Dashboard Layout */
+
+.dashboardLayout input {
+    width: 30%;
+}
+
+
+
+
+/* Responsiveness */
+
+@media (max-width: 455px) {
+    .navLinkLayout {
+        grid-template-areas: 
+        "logout navlink";
+        margin-bottom: 20px;
+    }
+
+    .navLinkLayout button {
+        width: 70px;
+    }
+
+    .navLinkLayout ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

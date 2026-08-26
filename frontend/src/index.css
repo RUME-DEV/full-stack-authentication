@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --c-white: #fff;
+    --c-black: #000;
+
+    --c-purple: #800080;
+    --c-darkGrey: #494949;
+    --c-grey: #707070;
+    --c-red: #f00;
+    --c-green: #0f0;
+}
+
+body {
+    background: var(--c-black);
+    color: var(--c-white);
+    min-height: 100vh;
+    font-family: cursive;
+}
+
+
+button {
+    width: 30%;
+    height: 2.8em;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    border: solid 2px var(--c-purple);
+    background: none;
+    color: var(--c-white);
+
+    transition: all .5s linear;
+}
+
+button:hover {
+    color: var(--c-purple);
+    box-shadow: 0 0 15px var(--c-purple);
+    border: solid 2px var(--c-white);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    background: var(--c-darkGrey);
+    color: var(--c-grey);
+    border: none;
+    box-shadow: none;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--c-grey);
+
+    transition: all .5s linear;
+    position: relative;
+}
+a::before {
+    content: "";
+    position: absolute;
+    background: var(--c-grey);
+    height: .15em;
+    width: 10%;
+    bottom: -20%;
+    
+    transition: all .5s linear;
+}
+
+a:hover {
+    color: var(--c-purple);
+}
+a:hover::before {
+    width: 100%;
+    background: var(--c-purple);
+}
+
+input {
+    display: block;
+    width: 100%;
+    height: 3em;
+    border-radius: 20px;
+    padding-left: 5px;
+    margin: 30px 0;
+    border: none;
+}
+
+input::placeholder {
+    text-transform: capitalize;
+}
+
+input:focus {
+    outline-color: var(--c-purple);
+}
