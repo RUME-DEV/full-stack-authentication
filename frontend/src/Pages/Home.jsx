@@ -4,11 +4,14 @@ import Welcome from "../Components/Welcome"
 import styles from "./Pages.module.css"
 
 function Home() {
+    // Getting User From AuthContext
     const { user } = useContext(AuthContext)
 
     const [status, setStatus] = useState("")
     console.log(`Home: `, user)
 
+
+    // Copy Feature
     const copyId = async() => {
         try {
             await navigator.clipboard.writeText(user?.id)
