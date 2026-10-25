@@ -46,6 +46,7 @@ function NavLinkLayout() {
                 <ul>
                     <li><NavLink end to={"/dashboard"} className={({ isActive }) => isActive ? styles.active : null} >Dashboard</NavLink></li>
                     <li><NavLink to={"/"} className={({ isActive }) => isActive ? styles.active : null} >Home</NavLink></li>
+                    <li><NavLink to={"/applications"} className={({ isActive }) => isActive ? styles.active : null} >All Applications</NavLink></li>
                 </ul>
             </div>
 

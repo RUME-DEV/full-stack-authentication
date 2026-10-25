@@ -1,19 +1,74 @@
-export async function userLoader({ params }) {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`)
+import JOBAPI from "../API.js"
 
-    if (!res.ok) throw new Response("User Request Failed", {status: res.status})
 
-    return res.json()
+
+// Fetch All Applications
+
+const jobApplicationLoader = async() => {
+
+    try {
+
+        const res = await JOBAPI.get("/applications")
+
+        return res.data
+    } catch(err) {
+        const message = err.response?.data?.message || err?.message || "Could Not Get Applications"
+
+        const status = err.response?.status || 500
+
+        throw new Response(message, { status })
+    }
 }
 
-// let count = 0
 
-// export function displayCount() {
-//     return {count}
-// }
 
-// export async function updateCount() {
-//     await new Promise(resolve => setTimeout(resolve, 2000))
-//     count++
-//     return null
-// }
+
+// Fetch Most Recent Application
+
+const dashboardApplicationLoader = async() => {
+    try {
+
+        const res = await JOBAPI.get('application')
+
+        return res.data
+    } catch(err) {
+
+        const message = err.response?.data?.message || err.message || "Could Not Get A Job Application"
+
+        const status = err.response?.status || 500
+
+        throw new Response(message, { status })
+    }
+}
+
+
+
+
+// Fetch Specific Job Application By Id
+
+const getApplication = async({ params }) => {
+    try {
+
+        const { id } = params
+
+        const res = await JOBAPI.get(`/application/${id}`)
+
+        return res.data
+    } catch(err) {
+
+        const message = err.response?.data?.message || err.message || "Cound Not Find An Application"
+
+        const status = err.response?.data || 500
+
+        throw new Response(message, { status })
+    }
+}
+
+
+
+
+
+
+
+
+export { jobApplicationLoader, dashboardApplicationLoader, getApplication }

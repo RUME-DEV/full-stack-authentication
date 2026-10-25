@@ -154,14 +154,7 @@ const logOut = (req, res) => {
     })
 } 
 
-const sendData = (req, res) => {
-    console.log(req.body)
-
-    return res.status(200).json({
-        message: "Name Successful"
-    })
-}
 
 
 
-export { sendData, registerUser, loginUser, deleteUser, getCurrentUser, logOut }
+export { registerUser, loginUser, deleteUser, getCurrentUser, logOut }

@@ -2,9 +2,10 @@ import express, { urlencoded } from 'express'
 import dotenv from "dotenv"
 import cors from "cors"
 import conToDB from './config/db.js'
-import route from './router/userroute.js'
 import logRoute from './middleware/logroute.js'
 import cookieParser from 'cookie-parser'
+import userRouter from './router/userRoute.js'
+import jobRouter from './router/jobRoute.js'
 
 const app = express()
 
@@ -22,7 +23,8 @@ conToDB()
 
 
 
-app.use('/user', route)
+app.use('/user', userRouter)
+app.use('/job', jobRouter)
 
 
 

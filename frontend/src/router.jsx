@@ -6,13 +6,15 @@ import Login from "./Auth/Login"
 import Register from "./Auth/Register"
 import ProtectedRoute from "./Routes/ProtectedRoute"
 import NavLinkLayout from "./Layouts/NavLinkLayout"
-import DashboardLayout from "./Layouts/DashboardLayout"
 import Dashboard from "./Pages/Dashboard"
-import User from "./Pages/User"
 import NotFound from "./Pages/NotFound"
-import { userLoader } from "./Data/loader.js"
 import Error from "./Components/Error.jsx"
-import { dashboardFormHandler } from "./Data/action.js"
+import { dashboardFormHandler, editApplication } from "./Data/action.js"
+import DashboardLayout from "./Layouts/DashboardLayout.jsx"
+import { jobApplicationLoader, dashboardApplicationLoader, getApplication } from "./Data/loader.js"
+import Applications from "./Pages/Applications.jsx"
+import ViewApplication from "./Pages/ViewApplication.jsx"
+import EditApplication from "./Pages/EditApplication.jsx"
 
 
 const router = createBrowserRouter([
@@ -37,22 +39,40 @@ const router = createBrowserRouter([
               {
                 path: "dashboard",
                 element: <DashboardLayout />,
+                action: dashboardFormHandler,
+                ErrorBoundary: Error,
                 children: [
-                  { 
-                    index: true, 
+                  {
+                    index: true,
                     element: <Dashboard />,
-                    action: dashboardFormHandler,
-                    // loader: displayCount,
-                    // action: updateCount,
-                    errorElement: <Error />
-                  },
-                  { 
-                    path: ":userId", 
-                    element: <User />, 
-                    loader: userLoader,
+                    loader: dashboardApplicationLoader,
                     errorElement: <Error />
                   }
                 ]
+              }, {
+                path: "applications",
+                children: [
+                  {
+                    index: true,
+                    element: <Applications />,
+                    loader: jobApplicationLoader,
+                    errorElement: <Error />
+                  }, 
+                  {
+                    path: ':id',
+                    element: <ViewApplication />,
+                    loader: getApplication,
+                    errorElement: <Error />
+                  },
+                  {
+                    path: ':id/edit',
+                    element: <EditApplication />,
+                    loader: getApplication,
+                    action: editApplication,
+                    errorElement: <Error />
+                  }
+                ]
+                
               }
             ]
           }

@@ -2,19 +2,20 @@
 
 .welcome {
     text-align: center;
-    box-shadow: 0 0 10px var(--c-white);
     padding: 30px 0;
-    margin-top: 50px;
-    line-height: 3;
+    line-height: 2.2;
 }
 
 .welcome h1 {
-    font-size: 30px;
+    font-size: clamp(24px, 4vw, 32px);
     text-transform: capitalize;
+    overflow-wrap: anywhere;
 }
 
 .welcome p {
-    font-size: 19px;
+    font-size: 16px;
+    color: #b0b0b0;
+    overflow-wrap: anywhere;
 }
 
 
@@ -22,16 +23,21 @@
 /* Loading Component */
 
 .loadingRoot {
-    position: absolute;
-    background: #00000030;
-    top: 0;
-    bottom: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
+    
+    background: #00000030;
     backdrop-filter: blur(3px);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
 }
 
 .loadingRoot a {
@@ -82,5 +88,171 @@
 @keyframes pTag {
     50% {
         opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+
+/* Application Card */
+
+.application {
+    background: #111;
+    border: 1px solid #303030;
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+    transition: border-color .25s ease, transform .25s ease;
+}
+
+.application:hover {
+    border-color: var(--c-purple);
+    transform: translateY(-3px);
+}
+
+.applicationTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.applicationTop h2 {
+    font-size: 22px;
+    overflow-wrap: anywhere;
+}
+
+.applicationPosition {
+    color: #b0b0b0;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+}
+
+/* Status Badge */
+
+.applicationStatus {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.statusApplied {
+    color: #cda6ff;
+    background: #80008030;
+    border: 1px solid #800080;
+}
+
+.statusInterview {
+    color: #8bffb0;
+    background: #00800030;
+    border: 1px solid #168b43;
+}
+
+.statusRejected {
+    color: #ff9999;
+    background: #ff000020;
+    border: 1px solid #a33;
+}
+
+.statusWithdrawn {
+    color: #ccc;
+    background: #70707030;
+    border: 1px solid #707070;
+}
+
+/* Application Footer */
+
+.applicationFooter {
+    border-top: 1px solid #303030;
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.applicationDate {
+    font-size: 13px;
+    color: #929292;
+}
+
+.applicationButtons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.applicationButtons a,
+.applicationButtons button {
+    width: auto;
+    min-width: 65px;
+    min-height: 38px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 13px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid var(--c-purple);
+    background: transparent;
+    color: var(--c-white);
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.applicationButtons a:hover,
+.applicationButtons button:hover {
+    background: #80008030;
+    border-color: #b45bff;
+    color: var(--c-white);
+    box-shadow: none;
+}
+
+.applicationButtons a::before {
+    display: none;
+}
+
+.applicationButtons button {
+    border-color: #873737;
+}
+
+.applicationButtons button:hover {
+    background: #ff000020;
+    border-color: var(--c-red);
+}
+
+/* Responsive Application Card */
+
+@media (max-width: 480px) {
+    .application {
+        padding: 18px;
+    }
+
+    .applicationTop {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .applicationButtons {
+        gap: 8px;
+    }
+
+    .applicationButtons a,
+    .applicationButtons button {
+        padding: 9px 12px;
     }
 }

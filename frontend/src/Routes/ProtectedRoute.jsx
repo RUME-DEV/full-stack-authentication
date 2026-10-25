@@ -18,7 +18,13 @@ function ProtectedRoute() {
         return <Navigate to="/login" state={{from : location}} replace />
     } 
 
-    return (navigation.state === "loading" ? <Loading /> : <Outlet />)
+
+    return (
+        <>
+            {navigation.state === 'loading' && <Loading />}
+            <Outlet />
+        </>
+    )
 }
 
 export default ProtectedRoute

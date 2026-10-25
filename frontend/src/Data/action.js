@@ -1,30 +1,72 @@
-import { redirect } from "react-router-dom"
+import { redirect, useRevalidator } from "react-router-dom"
+import JOBAPI from "../API.js"
 
-export const dashboardFormHandler = async ({ request }) => {
-    const formData = await request.formData()
 
-    const name = formData.get('name')
 
-    if(!name) {
-        throw new Response("Name Is Required", {status: 400})
+// Create A Job Application
+
+const dashboardFormHandler = async ({ request }) => {
+    try {
+
+        const formData = await request.formData()
+    
+        const form = {
+            company: formData.get("company"),
+            position: formData.get("position"),
+            status: formData.get("status"),
+            appliedDate: formData.get("appliedDate"),
+            jobUrl: formData.get("jobUrl"),
+            notes: formData.get("notes")
+        }
+    
+        const res = await JOBAPI.post("/application", form)
+
+        return {...res.data, status: res.status}
+
+    } catch(err) {
+
+        const message = err.response?.data?.message || err.message || "Could Not Add JOb Application"
+
+        return {message}
+
     }
-    // await new Promise(resolve => setTimeout(resolve, 2000))
-    const res = await fetch('http://localhost:4000/user/getdata', {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({name})
-    })
-
-    const data = await res.json()
-    if (!res.ok) {
-        throw new Response(data?.message, {status: res.status})
-    }
-
-    console.log(data.message)
-
-    return {message: data.message}
-    // return redirect("/dashboard")
 }
+
+
+
+
+// Edit An Application
+
+const editApplication = async({ params, request }) => {
+    try {
+        
+        const formData = await request.formData()
+        const { id } = params
+
+        const form = {
+            company: formData.get('company'),
+            position: formData.get("position"),
+            status: formData.get("status"),
+            appliedDate: formData.get("appliedDate"),
+            jobUrl: formData.get("jobUrl"),
+            notes: formData.get("notes")
+        }
+
+        const res = await JOBAPI.put(`/application/${id}`, form)
+
+        return redirect('/applications')
+    } catch(err) {
+
+        const message = err.response?.data?.message || err.message || "Could Not Update Application"
+
+        const status = err.response?.status || 500
+
+        throw new Response(message, { status })
+    }
+}
+
+
+
+
+
+export { dashboardFormHandler, editApplication } 

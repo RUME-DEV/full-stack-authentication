@@ -1,22 +1,549 @@
 /* Home Page */
 
-
 .home {
+    width: min(100% - 32px, 1000px);
+    margin: 55px auto 70px;
     text-align: center;
+}
+
+.home > h1 {
+    margin-bottom: 12px;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.3;
+}
+
+.home > p {
+    color: #cda6ff;
+    min-height: 24px;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    .home {
+        margin-top: 30px;
+    }
 }
 
 
 /* Dashboard */
 
-.dashboard {
+
+
+
+
+
+
+
+
+/* Applications Page */
+
+.applications {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px 50px;
+}
+
+.applicationsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.applicationsHeader h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+.applicationsHeader p {
+    color: #929292;
+}
+
+.addApplicationLink {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 18px;
+    border: 1px solid var(--c-purple);
+    border-radius: 9px;
+    color: var(--c-white);
+    background: #80008025;
+    white-space: nowrap;
+}
+
+.addApplicationLink::before {
+    display: none;
+}
+
+.addApplicationLink:hover {
+    color: var(--c-white);
+    background: #80008060;
+}
+
+/* Search and Status Filter */
+
+.applicationControls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.applicationControls input,
+.applicationControls select {
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    margin: 0;
+    padding: 0 15px;
+    border: 1px solid #353535;
+    border-radius: 9px;
+    background: #111;
+    color: var(--c-white);
+    font-family: inherit;
+}
+
+.applicationControls input::placeholder {
+    text-transform: none;
+    color: #888;
+}
+
+.applicationControls input:focus,
+.applicationControls select:focus {
+    outline: 1px solid var(--c-purple);
+    border-color: var(--c-purple);
+}
+
+.applicationControls select {
+    cursor: pointer;
+}
+
+.applicationControls option {
+    background: #111;
+    color: var(--c-white);
+}
+
+/* Application Count and Grid */
+
+.applicationCount {
+    color: #929292;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.applicationGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Empty States */
+
+.emptyApplications {
     text-align: center;
+    padding: 60px 20px;
+    margin-top: 24px;
+    background: #101010;
+    border: 1px dashed #454545;
+    border-radius: 14px;
 }
 
-.dashboard form {
+.emptyApplications h2 {
+    margin-bottom: 12px;
 }
 
-.dashboard div button {
-    width: 150px;
-    height: 3em;
-    margin-top: 50px;
+.emptyApplications p {
+    color: #929292;
+    margin-bottom: 24px;
+}
+
+.emptyApplications a {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--c-purple);
+    color: var(--c-white);
+    background: #80008025;
+}
+
+.emptyApplications a::before {
+    display: none;
+}
+
+.emptyApplications a:hover {
+    background: #80008060;
+    color: var(--c-white);
+}
+
+/* Applications Page Responsiveness */
+
+@media (max-width: 750px) {
+    .applicationGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .applicationsHeader h1 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 520px) {
+    .applications {
+        margin-top: 24px;
+        padding: 0 14px 35px;
+    }
+
+    .applicationsHeader {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .applicationControls {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .applicationControls select {
+        height: 45px;
+    }
+}
+
+
+
+
+
+/* View Application Page */
+
+.viewApplication {
+    max-width: 850px;
+    margin: 35px auto 60px;
+    padding: 0 24px;
+}
+
+.backToApplications {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #b5b5b5;
+}
+
+.backToApplications::before {
+    display: none;
+}
+
+.backToApplications:hover {
+    color: var(--c-purple);
+}
+
+.applicationDetailsCard {
+    background: #101010;
+    border: 1px solid #303030;
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.detailsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #303030;
+}
+
+.detailsHeader h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.detailsHeader > div > p {
+    color: #aaa;
+    font-size: 17px;
+    overflow-wrap: anywhere;
+}
+
+.detailsStatus {
+    flex-shrink: 0;
+    padding: 8px 13px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.detailsSection {
+    padding: 28px 0;
+    border-bottom: 1px solid #303030;
+}
+
+.detailsSection h2,
+.detailsNotes h2 {
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+.detailsRow {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #242424;
+}
+
+.detailsRow:last-child {
+    border-bottom: none;
+}
+
+.detailsRow > span {
+    color: #888;
+}
+
+.detailsRow > p {
+    overflow-wrap: anywhere;
+}
+
+.detailsRow > a {
+    width: fit-content;
+    color: #cda6ff;
+    overflow-wrap: anywhere;
+}
+
+.detailsRow > a::before {
+    background: var(--c-purple);
+}
+
+.detailsNotes {
+    padding: 28px 0;
+    border-bottom: 1px solid #303030;
+}
+
+.detailsNotes p {
+    color: #c0c0c0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.detailsActions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 26px;
+}
+
+.detailsActions a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    border: 1px solid var(--c-purple);
+    border-radius: 9px;
+    background: #80008025;
+    color: var(--c-white);
+}
+
+.detailsActions a::before {
+    display: none;
+}
+
+.detailsActions a:hover {
+    background: #80008060;
+    color: var(--c-white);
+}
+
+
+
+/* Status Badges — View Application */
+
+.statusApplied {
+    color: #cda6ff;
+    background: #80008030;
+    border: 1px solid #800080;
+}
+
+.statusInterview {
+    color: #8bffb0;
+    background: #00800030;
+    border: 1px solid #168b43;
+}
+
+.statusRejected {
+    color: #ff9999;
+    background: #ff000020;
+    border: 1px solid #a33;
+}
+
+.statusWithdrawn {
+    color: #ccc;
+    background: #70707030;
+    border: 1px solid #707070;
+}
+
+
+
+
+
+/* View Application Responsiveness */
+
+@media (max-width: 550px) {
+    .viewApplication {
+        margin-top: 20px;
+        padding: 0 14px;
+    }
+
+    .applicationDetailsCard {
+        padding: 22px 18px;
+    }
+
+    .detailsHeader {
+        flex-direction: column;
+    }
+
+    .detailsHeader h1 {
+        font-size: 26px;
+    }
+
+    .detailsRow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .detailsActions {
+        justify-content: stretch;
+    }
+
+    .detailsActions a {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+/* Edit Application Form */
+
+.jobApplicationForm {
+    width: min(90%, 850px);
+    margin: 35px auto;
+    padding: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+
+    background: #101010;
+    border: 1px solid #303030;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 30px #00000050;
+}
+
+.jobApplicationForm input,
+.jobApplicationForm select,
+.jobApplicationForm textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 13px 15px;
+
+    border: 1px solid #383838;
+    border-radius: 9px;
+    background: #080808;
+    color: var(--c-white);
+
+    font-family: inherit;
+    font-size: 15px;
+
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.jobApplicationForm input,
+.jobApplicationForm select {
+    height: 48px;
+}
+
+.jobApplicationForm input::placeholder,
+.jobApplicationForm textarea::placeholder {
+    color: #888;
+    text-transform: none;
+}
+
+.jobApplicationForm input:focus,
+.jobApplicationForm select:focus,
+.jobApplicationForm textarea:focus {
+    outline: none;
+    border-color: var(--c-purple);
+    box-shadow: 0 0 0 2px #80008030;
+}
+
+.jobApplicationForm input[type="date"] {
+    color-scheme: dark;
+}
+
+.jobApplicationForm select {
+    cursor: pointer;
+}
+
+.jobApplicationForm select option {
+    background: #101010;
+    color: var(--c-white);
+}
+
+.jobApplicationForm textarea {
+    grid-column: 1 / -1;
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.jobApplicationForm button {
+    grid-column: 1 / -1;
+    justify-self: end;
+
+    width: auto;
+    min-width: 180px;
+    min-height: 46px;
+    padding: 10px 22px;
+
+    border: 1px solid var(--c-purple);
+    border-radius: 9px;
+    background: #80008025;
+    color: var(--c-white);
+
+    font-family: inherit;
+    font-size: 15px;
+
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.jobApplicationForm button:hover {
+    background: #80008060;
+    border-color: #b45bff;
+    color: var(--c-white);
+    box-shadow: none;
+}
+
+@media (max-width: 600px) {
+    .jobApplicationForm {
+        width: calc(100% - 28px);
+        margin: 24px auto;
+        padding: 20px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .jobApplicationForm textarea,
+    .jobApplicationForm button {
+        grid-column: 1;
+    }
+
+    .jobApplicationForm button {
+        justify-self: stretch;
+        width: 100%;
+    }
 }
